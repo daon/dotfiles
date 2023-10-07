@@ -1,4 +1,15 @@
 return {
+  "nvim-lua/plenary.nvim",
+  -- GIT
+  "tpope/vim-fugitive",
+  "tpope/vim-rhubarb",
 
-	"andreshazard/vim-freemarker",
+  "christoomey/vim-tmux-navigator",
+
+  "inkarkat/vim-ReplaceWithRegister",
+
+  -- Detect tabstop and shiftwidth automatically
+  "tpope/vim-sleuth",
+
+  -- { "folke/which-key.nvim", opts = {} },
 }

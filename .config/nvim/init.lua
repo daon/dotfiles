@@ -1,1 +1,2 @@
-require("dlevin")
+require("dlevin.core")
+require("dlevin.lazy")

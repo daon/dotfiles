@@ -1,52 +1,48 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  keys = {
-    { "<leader>e", "<cmd>NvimTreeToggle<cr>" },
-  },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    local nvim_tree = require("nvim-tree")
+    local nvimtree = require("nvim-tree")
 
-    nvim_tree.setup({
-      disable_netrw = true,
-      hijack_netrw = false,
-      open_on_tab = false,
-      hijack_cursor = false,
-      update_cwd = false,
-      hijack_directories = {
-        enable = true,
-        auto_open = true,
+    -- recommended settings from nvim-tree documentation
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+
+    -- configure nvim-tree
+    nvimtree.setup({
+      view = {
+        width = 35,
+        relativenumber = true,
       },
-      diagnostics = {
-        enable = false,
-        icons = {
-          hint = "",
-          info = "",
-          warning = "",
-          error = "",
-        },
-      },
-      git = {
-        enable = false,
-      },
-      update_focused_file = {
-        enable = true,
-        update_cwd = false,
-        ignore_list = {},
-      },
-      system_open = { cmd = nil, args = {} },
-      filters = { dotfiles = false, custom = {} },
+      -- change folder arrow icons
       renderer = {
         indent_markers = {
           enable = true,
         },
-        -- highlight_opened_files = "all"
       },
-      view = {
-        width = table,
-        hide_root_folder = false,
-        side = "left",
-        signcolumn = "no",
+      -- disable window_picker for
+      -- explorer to work well with
+      -- window splits
+      actions = {
+        open_file = {
+          window_picker = {
+            enable = false,
+          },
+        },
+      },
+      filters = {
+        custom = { ".DS_Store" },
+      },
+      git = {
+        ignore = false,
       },
     })
+
+    local keymap = vim.keymap
+
+    keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file explorer" })
+    keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle file explorer on current file" })
+    keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<cr>", { desc = "Collapse file explorer" })
+    keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh file explorer" })
   end,
 }

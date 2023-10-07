@@ -1,48 +1,29 @@
 return {
 	"ThePrimeagen/harpoon",
+	dependencies = {
+		"nvim-lua/plenary.nvim"
+	},
 	config = true,
 	keys = {
 		{
-			"<leader>a",
-			function()
-				local mark = require("harpoon.mark")
-				mark.add_file()
-			end,
+			"<leader>ha",
+			"<cmd>lua require('harpoon.mark').add_file()<cr>",
+			desc = "Mark file with harpoon"
 		},
 		{
-			"<C-e>",
-			function()
-				local ui = require("harpoon.ui")
-				ui.toggle_quick_menu()
-			end,
+			"<leader>ht",
+			"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
+			desc = "Toggle harpoon quick menu"
 		},
 		{
-			"<C-h>",
-			function()
-				local ui = require("harpoon.ui")
-				ui.nav_file(1)
-			end,
+			"<leader>hn",
+			"<cmd>lua require('harpoon.ui').nav_next()<cr>",
+			desc = "Go to next harpoon mark"
 		},
 		{
-			"<C-t>",
-			function()
-				local ui = require("harpoon.ui")
-				ui.nav_file(2)
-			end,
-		},
-		{
-			"<C-n>",
-			function()
-				local ui = require("harpoon.ui")
-				ui.nav_file(3)
-			end,
-		},
-		{
-			"<C-s>",
-			function()
-				local ui = require("harpoon.ui")
-				ui.nav_file(4)
-			end,
+			"<leader>hp",
+			"<cmd>lua require('harpoon.ui').nav_prev()<cr>",
+			desc = "Go to previous harpoon mark"
 		},
 	},
 }
